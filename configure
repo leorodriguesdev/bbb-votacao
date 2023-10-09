@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Verificar se o node está instalado
+if ! command -v node &> /dev/null
+then
+    echo "Node não encontrado! Instale-o para continuar."
+    exit 1
+fi
+
+# Verificar se o yarn ou npm está instalado
+if ! command -v yarn &> /dev/null && ! command -v npm &> /dev/null
+then
+    echo "Yarn ou Npm não encontrado! Instale um deles para continuar."
+    exit 1
+fi
+
+echo "Todas as dependências estão presentes!"
