@@ -1,12 +1,6 @@
 .PHONY: all frontend backend clean
 
-all: frontend backend run-backend run-frontend
-
-frontend:
-	cd frontend && npm install
-
-backend:
-	cd backend && npm install
+run-all: run-backend run-frontend
 
 OS := $(shell uname -s)
 

@@ -1,17 +1,36 @@
-#!/bin/bash
+#!/bin/sh
 
-# Verificar se o node está instalado
-if ! command -v node &> /dev/null
-then
-    echo "Node não encontrado! Instale-o para continuar."
-    exit 1
-fi
+# Função para instalar Node.js e npm no Ubuntu
+install_on_ubuntu() {
+    echo "Instalando Node.js e npm no Ubuntu..."
+    sudo apt update
+    sudo apt install -y nodejs npm
+}
 
-# Verificar se o yarn ou npm está instalado
-if ! command -v yarn &> /dev/null && ! command -v npm &> /dev/null
-then
-    echo "Yarn ou Npm não encontrado! Instale um deles para continuar."
-    exit 1
-fi
+# Função para instalar Node.js e npm no macOS
+install_on_mac() {
+    echo "Instalando Node.js e npm no macOS..."
+    # Você pode usar brew ou outro método de instalação para macOS
+    brew install node
+}
 
-echo "Todas as dependências estão presentes!"
+# Detecta o sistema operacional e chama a função de instalação apropriada
+OS="$(uname)"
+case $OS in
+    'Linux')
+        # Supondo que é Ubuntu (ajuste conforme necessário para outras distribuições)
+        install_on_ubuntu
+        ;;
+    'Darwin') 
+        # macOS
+        install_on_mac
+        ;;
+    *)
+        echo "SO $OS não suportado."
+        exit 1
+        ;;
+esac
+
+# Supondo que o backend e o frontend tenham seus próprios package.json, instale as dependências para ambos
+cd backend && npm install
+cd ../frontend && npm install
