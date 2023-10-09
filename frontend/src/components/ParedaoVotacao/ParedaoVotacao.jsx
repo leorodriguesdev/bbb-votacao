@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './ParedaoVotacao.css';
+import ReCAPTCHA from "react-google-recaptcha";
+
+
 
 import ParticipanteAImg from "../../assets/img/ParticipanteA.png";
 import ParticipanteBImg from "../../assets/img/ParticipanteB.png";
@@ -10,10 +13,8 @@ import ParticipanteBImg from "../../assets/img/ParticipanteB.png";
 function ParedaoVotacao() {
     const [voto, setVoto] = useState(null);
     const [totalVotos, setTotalVotos] = useState({ participanteA: 0, participanteB: 0 });
-    // const [percentualA, setPercentualA] = useState(0);
-    // const [percentualB, setPercentualB] = useState(0);
 
-    // const recaptchaRef = useRef();
+    const recaptchaRef = useRef();
 
     function refreshPage() {
         window.location.reload();
@@ -34,34 +35,26 @@ function ParedaoVotacao() {
 
 
     const handleVote = async (participante) => {
-        // const recaptchaValue = recaptchaRef.current.getValue();
-
-        // if (!recaptchaValue) {
-        //     console.error('Por favor, confirme que você não é um robô.');
-        //     return;
-        // }
-
-        // const hasVoted = localStorage.getItem('hasVoted');
-        // if (hasVoted) {
-        //     console.error('Você já votou!');
-        //     return;
-        // }
-
-        // const response = await axios.post('http://localhost:3001/vote', { participante }, {
-        //     headers: {
-        //         'x-has-voted': true
-        //     }
-
+        const recaptchaValue = recaptchaRef.current.getValue();
+    
+        if (!recaptchaValue) {
+            alert('Por favor, confirme que você não é um robô.'); 
+            return;
+        }
+    
         try {
             const response = await axios.post('http://localhost:3001/vote', { participante });
             console.log('response', response);
             localStorage.setItem('hasVoted', 'true');
             setVoto(participante);
             fetchVoteTotals();
+            
+            recaptchaRef.current.reset(); 
         } catch (error) {
             console.error('Erro ao votar:', error);
         }
     }
+    
 
     const participanteA = (totalVotos.participanteA / (totalVotos.participanteA + totalVotos.participanteB)) * 100;
     const participanteB = (totalVotos.participanteB / (totalVotos.participanteA + totalVotos.participanteB)) * 100;
@@ -70,7 +63,7 @@ function ParedaoVotacao() {
         <div className="votacao-container">
             <h2>Votação Paredão BBB</h2>
             <h3>QUEM DEVE SER ELIMINADO?</h3>
-            {/* <ReCAPTCHA ref={recaptchaRef} sitekey="6LfsK14oAAAAALOtP_K1iC6U29v0l09Y0TWUUo-J" /> */}
+            <ReCAPTCHA ref={recaptchaRef} sitekey="6LfsK14oAAAAALOtP_K1iC6U29v0l09Y0TWUUo-J" />
             {voto ? (
                 <div>
                     <p>Obrigado por votar no {voto}!</p>
