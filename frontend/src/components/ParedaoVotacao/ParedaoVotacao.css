@@ -1,0 +1,56 @@
+/* ParedaoVotacao.css */
+.votacao-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+
+.progress {
+    background: #e0e0df;
+    height: 30px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.progress .bar {
+    height: 100%;
+    position: absolute;
+    background: #76c7c0;
+}
+
+.progress .label {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 15px;
+    color: #333;
+}
+
+.btn-estatisticas {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #ebd336;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+    margin: 10px;
+    transition: background-color 0.3s;
+
+    /* estilizações adicionais para o botão aqui */
+}
+
+.btn-estatisticas:hover {
+    background-color: #ab9713;
+    color: #FFF;
+}
+
+.btn-votar {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #fff;
+    border: none;
+}
