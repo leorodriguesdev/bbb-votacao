@@ -15,6 +15,7 @@ function ParedaoVotacao() {
     const [totalVotos, setTotalVotos] = useState({ participanteA: 0, participanteB: 0 });
 
     const recaptchaRef = useRef();
+    const SECRET_KEY = '6LfvkosoAAAAAJ1xrYnssDvMfwofIYfPZttZfIxS';      
 
     function refreshPage() {
         window.location.reload();
@@ -63,7 +64,7 @@ function ParedaoVotacao() {
         <div className="votacao-container">
             <h2>Votação Paredão BBB</h2>
             <h3>QUEM DEVE SER ELIMINADO?</h3>
-            <ReCAPTCHA ref={recaptchaRef} sitekey="6LfsK14oAAAAALOtP_K1iC6U29v0l09Y0TWUUo-J" />
+            <ReCAPTCHA ref={recaptchaRef} sitekey={SECRET_KEY} />
             {voto ? (
                 <div>
                     <p>Obrigado por votar no {voto}!</p>
@@ -82,8 +83,6 @@ function ParedaoVotacao() {
                         Votar
                     </Link>
                 </div>
-
-
             ) : (
                 <div className="votacao-container d-flex justify-content-center align-items-center">
                     <button className="btn-votar" onClick={() => handleVote('participanteA')}><img src={ParticipanteAImg} alt="A" sizes='300' /></button>
