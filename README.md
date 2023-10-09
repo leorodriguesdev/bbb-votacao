@@ -1,4 +1,4 @@
-# Nome do Projeto
+# bbb-votacao
 
 Projeto criado para o desafio [selecao-blackbird](https://github.com/selecao-blackbird/leonardo-rodrigues).
 
