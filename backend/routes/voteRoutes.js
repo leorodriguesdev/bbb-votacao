@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const voteController = require('../controllers/voteController');
+const voteControllerWithWss = require('../controllers/voteController');
+
+const voteController = voteControllerWithWss(require('../websocket').wss);
 
 router.get('/votes/total', voteController.getTotalVotes);
 router.get('/votes/participante/:name', voteController.getVotesByParticipant);

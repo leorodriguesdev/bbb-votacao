@@ -38,10 +38,13 @@ Isto instalará todas as dependências necessárias para o backend e frontend.
 4. **Inicie os servidores backend e frontend**:
 
 ```bash
-make run-all
+make run
 ```
 
 Isto iniciará o backend e o frontend em terminais separados. O frontend estará disponível em [http://localhost:3000](http://localhost:3000) (ou a porta que você configurou) e o backend estará rodando na porta definida no seu servidor (por exemplo, `3001`).
+
+A rota principal é para registrar o voto e a rota /estatisticas acompanha os números da votação.
+
 
 ## Contato
 

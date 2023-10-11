@@ -1,6 +1,6 @@
 .PHONY: all frontend backend clean
 
-run-all: run-backend run-frontend
+run: run-backend run-frontend
 
 OS := $(shell uname -s)
 
@@ -9,7 +9,7 @@ ifeq ($(OS),Linux)
 	gnome-terminal -- bash -c "cd backend && npm start"
 endif
 ifeq ($(OS),Darwin) # Darwin indica macOS
-	osascript -e 'tell app "Terminal" to do script "cd bbb-votacao/backend && npm start"'
+	osascript -e 'tell app "Terminal" to do script "cd leonardo-rodrigues/backend && npm start"'
 endif
 
 run-frontend:
@@ -17,7 +17,7 @@ ifeq ($(OS),Linux)
 	gnome-terminal -- bash -c "cd frontend && npm start"
 endif
 ifeq ($(OS),Darwin) # Darwin indica macOS
-	osascript -e 'tell app "Terminal" to do script "cd bbb-votacao/frontend && npm start"'
+	osascript -e 'tell app "Terminal" to do script "cd leonardo-rodrigues/frontend && npm start"'
 endif
 
 
